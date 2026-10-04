@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StreamCheck</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>StreamCheck</h1>
+    <span id="status" class="muted">Loading…</span>
+  </div>
+  <div class="top-actions">
+    <button id="settingsBtn" class="ghost">Providers</button>
+    <button id="scanBtn" class="primary">Scan library</button>
+  </div>
+</header>
+
+<div id="progress" class="progress hidden"><div id="progressBar"></div></div>
+<div id="banner" class="banner hidden"></div>
+
+<section id="settings" class="panel hidden">
+  <div class="panel-row">
+    <label class="field">
+      <span>Country</span>
+      <select id="country"></select>
+    </label>
+    <div class="field">
+      <span>Count as available when</span>
+      <div id="monetization" class="chips"></div>
+    </div>
+  </div>
+  <div class="field">
+    <span>Streaming services you have <em id="provCount" class="muted"></em></span>
+    <input id="provSearch" type="search" placeholder="Filter services…">
+    <div id="providers" class="providers"></div>
+  </div>
+</section>
+
+<main>
+  <div class="toolbar">
+    <div class="tabs" id="tabs">
+      <button data-kind="all" class="active">All</button>
+      <button data-kind="movie">Movies</button>
+      <button data-kind="series">Series</button>
+    </div>
+    <input id="search" type="search" placeholder="Search titles…">
+    <select id="sort">
+      <option value="size">Largest first</option>
+      <option value="title">Title A–Z</option>
+      <option value="year">Newest first</option>
+    </select>
+    <label class="check"><input type="checkbox" id="showAll"> Show unavailable</label>
+  </div>
+
+  <div class="selbar">
+    <label class="check"><input type="checkbox" id="selectAll"> Select all shown</label>
+    <span id="summary" class="muted"></span>
+    <button id="deleteBtn" class="danger" disabled>Delete selected</button>
+  </div>
+
+  <div id="grid" class="grid"></div>
+  <p id="empty" class="empty hidden"></p>
+</main>
+
+<dialog id="confirm">
+  <form method="dialog">
+    <h2>Delete <span id="confirmCount"></span>?</h2>
+    <p class="muted" id="confirmSize"></p>
+    <ul id="confirmList"></ul>
+    <label class="check"><input type="checkbox" id="optFiles" checked> Delete files from disk</label>
+    <label class="check"><input type="checkbox" id="optExclude"> Add to import exclusion list (stop lists re-adding it)</label>
+    <div class="dialog-actions">
+      <button value="cancel" class="ghost">Cancel</button>
+      <button value="ok" id="confirmOk" class="danger">Delete</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
